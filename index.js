@@ -31,7 +31,20 @@ app.get('/about', function (req, res) {
 });
 
 app.get('/contact', function (req, res) {
-    res.render('contact');
+    var d = new Date();
+    var n = d.getHours();
+    var excuse = "";
+    if (n < 10)
+    {
+        excuse = "too early";
+    }
+    else if (n < 17) {
+        excuse = "too late";
+    }
+    else  {
+        excuse = "way too late !!!!";
+    }
+    res.render('contact', {message: excuse});
 });
 
 
