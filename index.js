@@ -21,14 +21,11 @@ app.get('/', function (req, res) {
 // the about page
 
 app.get('/about', function (req, res) {
-    res.render('about');
+    res.render('about', {layout : 'special'});
 });
 
 // the contact-us page
 
-app.get('/about', function (req, res) {
-    res.render('about');
-});
 
 app.get('/contact', function (req, res) {
     var d = new Date();
@@ -51,7 +48,7 @@ app.get('/contact', function (req, res) {
 // // 404 catch-all handler (middleware)
 app.use(function (req, res, next) {
     res.status(404);
-    res.render('404');
+    res.render('404', {layout: null});
 });
 // // 500 error handler (middleware)
 app.use(function (err, req, res, next) {
