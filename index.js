@@ -12,6 +12,11 @@ app.set('view engine', 'handlebars');
 
 app.use(express.static('public'));
 
+// middleware for parsing the body of Posts
+// need this before you can use req.body
+
+app.use(express.urlencoded({ extended: true })) 
+
 // the default route when there is no path.
 
 app.get('/', function (req, res) {
@@ -29,6 +34,16 @@ app.get('/about', function (req, res) {
 app.get('/name', function (req, res) {
     let user = req.query.user;
     res.render('name', {name: user});
+});
+
+app.get('/nameForm', function (req, res) {
+    //let user = req.body.firstName;
+    res.render('nameForm');
+});
+
+app.post('/nameForm', function (req, res) {
+    let user = req.body.firstname;
+    res.render('nameForm', {firstnameentered: user});
 });
 
 // the contact-us page
