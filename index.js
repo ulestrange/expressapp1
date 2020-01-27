@@ -24,6 +24,13 @@ app.get('/about', function (req, res) {
     res.render('about', {layout : 'special'});
 });
 
+//the name page
+
+app.get('/name', function (req, res) {
+    let user = req.query.user;
+    res.render('name', {name: user});
+});
+
 // the contact-us page
 
 
