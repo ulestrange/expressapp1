@@ -41,6 +41,12 @@ app.get('/testTemplate', function (req, res) {
     res.render('testTemplate', {data: testData.getTestData()});
 });
 
+
+// listing all the cars
+
+app.get('/listcars', function (req, res) {
+    res.render('listcars', {data: testData.getCarData()});
+});
 //the name page
 
 app.get('/name', function (req, res) {

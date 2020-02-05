@@ -1,0 +1,22 @@
+<h2> Our wonderful car listing </h2>
+
+
+<table>
+    <tr>
+    <th>Car ID</th>
+    <th>Model</th>
+    <th>Year</th>
+    <th>Price</th>
+    </tr>
+
+{{#each data}}
+    <tr>
+    <td>{{@key}}</td>
+    <td>{{this.Model}}</td>
+    <td>{{this.year}}</td>
+    <td>{{this.Price}}</td>
+    </tr>
+    {{/each}}
+
+
+</table>
