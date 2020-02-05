@@ -2,6 +2,12 @@ const express = require('express')
 const app = express()
 const port = 3000
 
+// import our test data
+
+var testData = require('./lib/testdata.js');
+
+
+
 // set up handlebars view engine
 var handlebars = require('express-handlebars')
     .create({ defaultLayout: 'main' });
@@ -27,6 +33,12 @@ app.get('/', function (req, res) {
 
 app.get('/about', function (req, res) {
     res.render('about', {layout : 'special'});
+});
+
+// the test template page
+
+app.get('/testTemplate', function (req, res) {
+    res.render('testTemplate', {data: testData.getTestData()});
 });
 
 //the name page

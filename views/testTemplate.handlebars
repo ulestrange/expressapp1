@@ -1,0 +1,35 @@
+<h1> This is the test template to play with data and context </h1>
+<h2> Hello {{data.name}} you are {{data.age}}.</h2>
+
+<ul>
+    {{#each data.hobbies}}
+    <li> {{this}}</li>
+    {{/each}}
+</ul>
+
+
+
+{{!--Iterating over an array using each--}}
+
+<ul>
+    {{#each data.extrahobbies}}
+    <li> {{this}}</li>
+    {{/each}}
+</ul>
+
+
+
+{{!--Iterating over an object using each--}}
+<ul>
+    {{#each data.results}}
+    <li>{{@key}}: {{this}}</li> {{/each}}
+</ul>
+
+{{#if data.hobbies }}
+<h2> {{data.hobbies}} </h2>
+{{/if}} {{#if data.results.irish }}
+<h2> Irish: {{data.results.irish}} </h2>
+{{/if}} {{#if data.results.german }}
+<h2> German: {{data.results.german}} </h2>
+{{else}}
+<h2> German: Not taken {{/if}}
