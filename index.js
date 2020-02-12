@@ -23,6 +23,16 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: true })) 
 
+// middleware for saving the weather data into a variable which
+// can be accesed by any template.
+
+app.use(function(req, res, next){
+    if(!res.locals.partials) res.locals.partials = {};
+    res.locals.partials.weatherData = testData.getWeatherData();
+    next();
+    });
+
+
 // the default route when there is no path.
 
 app.get('/', function (req, res) {
