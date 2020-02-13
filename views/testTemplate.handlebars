@@ -8,6 +8,10 @@
 </ul>
 
 
+{{! This comment will not show up in the output}}
+<!-- This comment will show up as HTML-comment -->
+{{!-- This comment may contain mustaches like }} --}}
+
 
 {{!--Iterating over an array using each--}}
 
@@ -27,8 +31,8 @@
 
 {{#if data.hobbies }}
 <h2> {{data.hobbies}} </h2>
-{{/if}} {{#if data.results.irish }}
-<h2> Irish: {{data.results.irish}} </h2>
+{{/if}} {{#if data.results.Irish }}
+<h2> Irish: {{data.results.Irish}} </h2>
 {{/if}} {{#if data.results.german }}
 <h2> German: {{data.results.german}} </h2>
 {{else}}
