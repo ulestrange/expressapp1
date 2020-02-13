@@ -69,6 +69,13 @@ app.get('/nameForm', function (req, res) {
     res.render('nameForm');
 });
 
+app.get('/carDetails/:carid', function (req, res){
+    carData = testData.getCarData();
+    requestedCarData = carData[req.params.carid];
+    console.log(requestedCarData);
+    res.render('cardetails', {data : requestedCarData});
+})
+
 app.post('/nameForm', function (req, res) {
     let user = req.body.firstname;
     res.render('nameForm', {firstnameentered: user});
