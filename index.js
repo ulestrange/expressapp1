@@ -4,7 +4,8 @@ const port = 3000
 
 // import our test data
 
-var testData = require('./lib/testdata.js');
+const testData = require('./lib/testdata.js');
+const handlers = require('./lib/handlers')
 
 
 
@@ -35,15 +36,14 @@ app.use(function(req, res, next){
 
 // the default route when there is no path.
 
-app.get('/', function (req, res) {
-    res.render('home');
-});
+app.get('/', handlers.home)
+
 
 // the about page
 
-app.get('/about', function (req, res) {
-    res.render('about', {layout : 'special'});
-});
+app.get('/about', handlers.about);
+
+// app.get('/newsletter', handlers.newsletter);
 
 // the test template page
 
@@ -62,6 +62,8 @@ app.post('/addcar', function (req, res) {
 app.get('/caradded', function (req, res) {
     res.render('caradded');
 });
+
+
 
 // listing all the cars
 
@@ -95,47 +97,14 @@ app.post('/nameForm', function (req, res) {
 // the contact-us page
 
 
-app.get('/contact', function (req, res) {
-    var d = new Date();
-    var n = d.getHours();
-    var excuse = "";
-    if (n < 10)
-    {
-        excuse = "too early";
-    }
-    else if (n < 17) {
-        excuse = "too late";
-    }
-    else  {
-        excuse = "way too late !!!!";
-    }
-    res.render('contact', {message: excuse});
-});
+app.get('/contact', handlers.contact );
 
 
-// // 404 catch-all handler (middleware)
-app.use(function (req, res, next) {
-    res.status(404);
-    res.render('404', {layout: null});
-});
-// // 500 error handler (middleware)
-app.use(function (err, req, res, next) {
-    console.error(err.stack);
-    res.status(500);
-    res.render('500');
-});
+app.get('/newsletter', handlers.newsletter );
 
 
-
-
-
-
-app.get('/contact', function (req, res) {
-    res.type('text/plain');
-    res.send('Don\'t bother we never reply');
-});
-
-
+app.use(handlers.notFound)
+app.use(handlers.serverError)
 
 
 
