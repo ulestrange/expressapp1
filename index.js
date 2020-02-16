@@ -52,6 +52,17 @@ app.get('/testTemplate', function (req, res) {
 });
 
 
+app.get('/addcar', function (req, res) {
+    res.render('addcar');
+});
+app.post('/addcar', function (req, res) {
+    console.log('Add car form submitted :' + req.body.carname)
+    res.redirect(303, '/caradded');
+});
+app.get('/caradded', function (req, res) {
+    res.render('caradded');
+});
+
 // listing all the cars
 
 app.get('/listcars', function (req, res) {
@@ -65,7 +76,7 @@ app.get('/name', function (req, res) {
 });
 
 app.get('/nameForm', function (req, res) {
-    //let user = req.body.firstName;
+    let user = req.body.firstName;
     res.render('nameForm');
 });
 
