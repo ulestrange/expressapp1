@@ -5,7 +5,9 @@ const port = 3000
 // import our test data
 
 const testData = require('./lib/testdata.js');
-const handlers = require('./lib/handlers')
+const handlers = require('./lib/handlers');
+
+const bodyParser = require('body-parser')
 
 
 
@@ -23,6 +25,7 @@ app.use(express.static('public'));
 // need this before you can use req.body
 
 app.use(express.urlencoded({ extended: true })) 
+//app.use(express.bodyParser.json())
 
 // middleware for saving the weather data into a variable which
 // can be accesed by any template.
@@ -100,7 +103,11 @@ app.post('/nameForm', function (req, res) {
 app.get('/contact', handlers.contact );
 
 
-app.get('/newsletter', handlers.newsletter );
+// handlers for fetch/JSON form submission
+app.get('/newsletter', handlers.newsletter)
+app.post('/api/newsletter-signup', handlers.api.newsletterSignup)
+
+app.post('')
 
 
 app.use(handlers.notFound)
