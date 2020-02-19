@@ -64,7 +64,7 @@ app.get('/caradded', handlers.carAdded);
 // listing all the cars
 
 app.get('/listcars', function (req, res) {
-    res.render('listcars', {data: testData.getCarData()});
+    res.render('listcars', {data: testData.getCarData(), title: 'list cars'});
 });
 //the name page
 
