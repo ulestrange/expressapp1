@@ -3,20 +3,28 @@
 
 <table>
     <tr>
-    <th>Car ID</th>
-    <th>Model</th>
-    <th>Year</th>
-    <th>Price</th>
+        <th>Car ID</th>
+        <th>Model</th>
+        <th>Year</th>
+        <th>Price</th>
     </tr>
 
-{{#each data}}
+    {{#each data}}
     <tr>
-    <td>{{@key}}</td>
-    <td>{{this.Model}}</td>
-    <td>{{this.year}}</td>
-    <td>{{this.Price}}</td>
+        <td>{{@key}}</td>
+        <td>{{this.Model}}</td>
+        <td>{{this.year}}</td>
+        <td>{{this.Price}}</td>
     </tr>
     {{/each}}
 
 
 </table>
+
+<ul>
+    {{#each data}}
+    <li>
+        Model: {{this.Model}} {{#if this.year}} Year: {{this.year}} {{/if}}
+    </li>
+    {{/each}}
+</ul>
