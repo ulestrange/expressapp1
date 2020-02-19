@@ -46,25 +46,18 @@ app.get('/', handlers.home)
 
 app.get('/about', handlers.about);
 
-// app.get('/newsletter', handlers.newsletter);
-
-// the test template page
-
-app.get('/testTemplate', function (req, res) {
-    res.render('testTemplate', {data: testData.getTestData()});
-});
 
 
-app.get('/addcar', function (req, res) {
-    res.render('addcar');
-});
-app.post('/addcar', function (req, res) {
-    console.log('Add car form submitted :' + req.body.carname)
-    res.redirect(303, '/caradded');
-});
-app.get('/caradded', function (req, res) {
-    res.render('caradded');
-});
+
+
+
+app.get('/addcar', handlers.getAddCar);
+
+
+app.post('/addcar', handlers.postAddCar);
+
+
+app.get('/caradded', handlers.carAdded);
 
 
 
