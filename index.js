@@ -47,10 +47,6 @@ app.get('/', handlers.home)
 app.get('/about', handlers.about);
 
 
-
-
-
-
 app.get('/addcar', handlers.getAddCar);
 
 
@@ -59,7 +55,7 @@ app.post('/addcar', handlers.postAddCar);
 
 app.get('/caradded', handlers.carAdded);
 
-
+app.get('/failed', handlers.failed)
 
 // listing all the cars
 
