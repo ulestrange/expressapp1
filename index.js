@@ -49,6 +49,8 @@ app.get('/about', handlers.about);
 
 app.get('/addcar', handlers.getAddCar);
 
+app.get('/addcar2', handlers.getAddCar2);
+
 
 app.post('/addcar', handlers.postAddCar);
 

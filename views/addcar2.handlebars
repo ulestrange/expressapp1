@@ -1,10 +1,50 @@
+<form method="post" id="addcarform">
+    <label for="carname">Car Name:
+        <input id="carname" name="carname">
+    </label>
 
-<form method="post">
-<label for="carname">Car Name: 
-    <input id="carname" name="carname">
-</label>
+    <fieldset>
+        <legend>Model of Car</legend>
+        <input type="radio" name='model' value="Volvo" id="Volvo"><label for="Volvo">Volvo</label>
+        <input type="radio" name='model' value="Renault" id="Renault"><label for="Renault">Renault</label>
+    </fieldset>
 
-{{!-- Button is type button now, it won't trigger a request automatically --}}
-<button type="button">Enter Data</button> 
+    {{!-- Button is type button now, it won't trigger a request automatically --}}
+    <button id="button" type="button">Enter Data</button>
 
 </form>
+
+<script>
+
+    {{!--listen for when the button is clicked the call the postData method--}}
+    document.getElementById('button').addEventListener('click', postData);
+
+
+
+
+    function postData(event) {
+
+        {{!--Set the body of the post with the data--}}
+
+        const postBody  = JSON.stringify({
+
+            carname: document.getElementById('addcarform').elements.carname.value,
+            model: document.getElementById('addcarform').elements.model.value,
+        })
+
+{{!-- For debugging purposes --}}
+        console.log (postBody); 
+
+        {{!--set the options for the fetch--}}
+        const options = {
+            method: 'POST',
+            body: postBody,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }
+
+        const uri = '/api/processaddcars2';
+    }
+
+</script>
