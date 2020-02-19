@@ -9,42 +9,62 @@
         <input type="radio" name='model' value="Renault" id="Renault"><label for="Renault">Renault</label>
     </fieldset>
 
-    {{!-- Button is type button now, it won't trigger a request automatically --}}
+    <!-- Button is type button now, it won't trigger a request automatically -->
     <button id="button" type="button">Enter Data</button>
 
 </form>
 
 <script>
 
-    {{!--listen for when the button is clicked the call the postData method--}}
+    //listen for when the button is clicked the call the postData method 
     document.getElementById('button').addEventListener('click', postData);
-
-
-
 
     function postData(event) {
 
-        {{!--Set the body of the post with the data--}}
+        // Set the body of the post with the data
 
-        const postBody  = JSON.stringify({
+        const body = JSON.stringify({
 
             carname: document.getElementById('addcarform').elements.carname.value,
             model: document.getElementById('addcarform').elements.model.value,
         })
 
-{{!-- For debugging purposes --}}
-        console.log (postBody); 
+        //For debugging purposes this logs to the developer console in your browser
+        console.log(body);
 
-        {{!--set the options for the fetch--}}
-        const options = {
-            method: 'POST',
-            body: postBody,
-            headers: {
-                'Content-Type': 'application/json'
-            }
+        //set the options for the fetch
+        //const options = 
+        //  method: 'POST',
+        //body: postBody,
+        //headers: {
+        //  'Content-Type': 'application/json'
+        // 
+        //
+        const headers = {
+            'Content-Type': 'application/json'
         }
 
-        const uri = '/api/processaddcars2';
+        const uri = '/api/processaddcar2';
+
+        // send POST request
+
+
+
+        fetch(uri, { method: 'post', body, headers })
+            .then(resp => {
+                if (resp.status < 200 || resp.status >= 300)
+                    throw new Error(`Request failed with status ${resp.status}`)
+                return resp.json()
+            })
+            .then(json => {
+                console.log("success");
+               // container.innerHTML = '<b>Thank you for signing up!</b>'
+            })
+            .catch(err => {
+                console.log("error");
+              //  container.innerHTML = `<b>We're sorry, we had a problem ` +
+              //      `signing you up.  Please <a href="/newsletter">try again</a>`
+            })
     }
 
 </script>

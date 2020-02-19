@@ -1,13 +1,16 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const bodyParser = require('body-parser');
+const app = express();
+const port = 3000;
+
+
 
 // import our test data
 
 const testData = require('./lib/testdata.js');
 const handlers = require('./lib/handlers');
 
-const bodyParser = require('body-parser')
+
 
 
 
@@ -25,7 +28,7 @@ app.use(express.static('public'));
 // need this before you can use req.body
 
 app.use(express.urlencoded({ extended: true })) 
-//app.use(express.bodyParser.json())
+app.use(bodyParser.json())
 
 // middleware for saving the weather data into a variable which
 // can be accesed by any template.
@@ -46,18 +49,20 @@ app.get('/', handlers.home)
 
 app.get('/about', handlers.about);
 
+// handlers for normal form submission
 
 app.get('/addcar', handlers.getAddCar);
+app.post('/addcar', handlers.postAddCar);
+app.get('/caradded', handlers.carAdded);
+app.get('/failed', handlers.failed);
+
+// handlers for for submission using fetch 
 
 app.get('/addcar2', handlers.getAddCar2);
+app.post('/api/processaddcar2', handlers.api.addCar);
 
 
-app.post('/addcar', handlers.postAddCar);
 
-
-app.get('/caradded', handlers.carAdded);
-
-app.get('/failed', handlers.failed)
 
 // listing all the cars
 
