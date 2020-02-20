@@ -1,6 +1,6 @@
 <form method="post" id="addcarform">
     <label for="carname">Car Name:
-        <input id="carname" name="carname">
+        <input id="carname" name="carname" required >
     </label>
 
     <fieldset>
@@ -9,19 +9,32 @@
         <input type="radio" name='model' value="Renault" id="Renault"><label for="Renault">Renault</label>
     </fieldset>
 
-    <!-- Button is type button now, it won't trigger a request automatically -->
-    <button id="button" type="button">Enter Data</button>
+    <!-- Button has a listener attached in the script -->
+    <button id="button" type="submit" >Enter Data</button>
 
 </form>
 
+<div id="message"></div>
+
 <script>
 
-    //listen for when the button is clicked then call the postData method 
-    document.getElementById('button').addEventListener('click', postData);
+      //listen for when the button is clicked then call the postData method 
+    // document.getElementById('button').addEventListener('click', postData);
 
-    function postData(event) {
+    document.getElementById('addcarform')
+    .addEventListener("submit", function (event) {
+        event.preventDefault(); // stops the whole form being submitted as a Request
 
-        // Set the body of the post with the data
+        postData();
+    });
+
+  
+
+    function postData() {
+
+        event.preventDefault();
+
+        // Set the body of the request with the data
 
         const body = JSON.stringify({
             carname: document.getElementById('addcarform').elements.carname.value,
@@ -39,6 +52,9 @@
                 'Content-Type': 'application/json'
             }
         }
+        const uri = '/api/processaddcar2';
+
+        const message = document.getElementById('message');
 
         // send POST request
 
@@ -50,12 +66,11 @@
             })
             .then(json => {
                 console.log("success");
-                // container.innerHTML = '<b>Thank you for signing up!</b>'
+                message.innerHTML = '<strong>Your data has been submitted - thanks!</strong>'
             })
             .catch(err => {
                 console.log("error");
-                //  container.innerHTML = `<b>We're sorry, we had a problem ` +
-                //      `signing you up.  Please <a href="/newsletter">try again</a>`
+                message.innerHTML = '<strong>Opps something went wrong - thanks!</strong>'
             })
     }
 
