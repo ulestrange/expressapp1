@@ -1,7 +1,9 @@
 const express = require('express');
 
+
 // body parser needs to be installed it handles the parsing of the body of a json post
 const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 const port = 3000;
 
@@ -9,6 +11,7 @@ const port = 3000;
 
 const testData = require('./lib/testdata.js');
 const handlers = require('./lib/handlers');
+//const config = require('./config.js');
 
 // set up handlebars view engine
 var handlebars = require('express-handlebars').create({
@@ -26,6 +29,7 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // middleware for saving the weather data into a variable which
 // can be accesed by any template.
