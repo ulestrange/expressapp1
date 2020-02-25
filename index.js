@@ -29,7 +29,7 @@ app.use(express.static('public'));
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cookieParser());
+app.use(cookieParser("una is great"));
 
 // middleware for saving the weather data into a variable which
 // can be accesed by any template.
