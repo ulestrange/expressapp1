@@ -1,5 +1,13 @@
 
+{{#if data.Model}}
+
 <h1>{{data.Model}}</h1>
 
 <h2>Our Price  {{data.Price}} </h2>
+
+{{/if}}
+
+{{#unless data.Model}}
+<h2> Sorry car not found</h2>
+{{/unless}}
 

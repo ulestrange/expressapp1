@@ -9,7 +9,7 @@ const port = 3000;
 
 // import our test data
 
-const testData = require('./lib/testdata.js');
+
 const handlers = require('./lib/handlers');
 //const config = require('./config.js');
 
@@ -77,12 +77,7 @@ app.get('/nameForm', function(req, res) {
   res.render('nameForm');
 });
 
-app.get('/carDetails/:carid', function(req, res) {
-  carData = testData.getCarData();
-  requestedCarData = carData[req.params.carid];
-  console.log(requestedCarData);
-  res.render('cardetails', { data: requestedCarData });
-});
+app.get('/carDetails/:carid', handlers.cardetails);
 
 app.post('/nameForm', function(req, res) {
   let user = req.body.firstname;
