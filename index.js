@@ -34,11 +34,11 @@ app.use(cookieParser("una is great"));
 // middleware for saving the weather data into a variable which
 // can be accesed by any template.
 
-app.use(function(req, res, next) {
-  if (!res.locals.partials) res.locals.partials = {};
-  res.locals.partials.weatherData = testData.getWeatherData();
-  next();
-});
+// app.use(function(req, res, next) {
+//   if (!res.locals.partials) res.locals.partials = {};
+//   res.locals.partials.weatherData = testData.getWeatherData();
+//   next();
+// });
 
 // the default route when there is no path.
 
@@ -62,9 +62,7 @@ app.post('/api/processaddcar2', handlers.api.addCar);
 
 // listing all the cars
 
-app.get('/listcars', function(req, res) {
-  res.render('listcars', { data: testData.getCarData(), title: 'list cars' });
-});
+app.get('/listcars', handlers.listcars );
 //the name page
 
 app.get('/name', function(req, res) {
