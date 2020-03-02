@@ -2,7 +2,19 @@
 
 Number of Visits in this session: {{numbervisits}}
 
-Shopping Cart {{shoppingcart.milk}}
+<h3>
+Shopping Cart 
+</h3>
+<table>
+{{#each items}}
+<tr>
+    <td>{{itemName}}</td>
+    <td>{{quantity}}</td>
+</tr>
+    {{/each}}
+</table>
+
+{{cart.milk}}
 {{#if message}} 
 <h2>
     {{message}}    
